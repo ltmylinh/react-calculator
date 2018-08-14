@@ -1,0 +1,78 @@
+.calculator-app {
+  text-align: center;
+}
+
+.calculator-app-logo {
+  animation: calculator-app-logo-spin infinite 20s linear;
+  height: 80px;
+}
+
+.calculator-app-header {
+  background-color: #222;
+  height: 150px;
+  padding: 20px;
+  color: white;
+}
+
+.calculator-app-title {
+  font-size: 1.5em;
+}
+
+.calculator-app-intro {
+  font-size: large;
+}
+
+@keyframes calculator-app-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.calculator-app-content{
+	display: flex;
+	justify-content: center;
+	margin-top: 10px;
+}
+
+.calculator-app-content input, .calculator-app-content button{
+	font-size: 2rem;
+	line-height: 7rem;
+	width: 25%;
+	text-align: center;
+}
+.calculator-app-content button{
+	border: 0;
+}
+.calculator-app-content .main-content{
+	width: 30%;
+	border: 1px solid #921029;
+}
+.calculator-app-content .cal-result{
+	width: 97%;
+	line-height: 5rem;
+	font-size: 3rem;
+	padding-right: 3%;
+	text-align: right;
+	color: #fff;
+	background-color: #433437; 
+}
+.calculator-app-content .keys-cals{
+	background-color: #F2274F;
+	color: #fff;
+}
+.calculator-app-content .keys-number, .calculator-app-content .keys-clear{
+	background-color: #fff;
+}
+.calculator-app-content .keys-number{
+	border-right: 1px solid #921029;
+}
+.calculator-app-content .keys-cals{
+	border-bottom: 1px solid #921029;
+}
+.calculator-app-content li{
+	border-top: 1px solid #921029;
+}
+.calculator-app-content .divide .keys-clear{
+	font-size: 2rem;
+	width: 75%;
+	border-right: 1px solid #921029;
+}
