@@ -10,8 +10,7 @@ class App extends Component {
 						result: 0,
 						firstNumber: null,
 						operator: null,
-						lastNumber: null,
-						isCalculating: false
+						lastNumber: null
 				};
 
 				this.handleClick = this
@@ -20,50 +19,39 @@ class App extends Component {
 		};
 
 		handleClick(presson, label) {
-				const {firstNumber, operator, lastNumber, isCalculating} = this.state;
+				const {firstNumber, operator, lastNumber} = this.state;
 				switch (presson) {
 						case "clear":
 								this.reset();
 								break;
 						case "number":
-								if (!isCalculating) {
-										let value = firstNumber
-												? `${firstNumber}${label}`
+								if (!firstNumber || (firstNumber && !operator)) {
+										this.setFirstNumber(label);
+								} else if (firstNumber && operator) {
+										let value = lastNumber
+												? `${lastNumber}${label}`
 												: label;
-										this.setFirstNumber(value);
-								} else {
-										if (operator) {
-												let value = lastNumber
-														? `${lastNumber}${label}`
-														: label;
-												this.setState({
-														...this.state,
-														lastNumber: value
-												});
-										} else {
-												let value = firstNumber
-														? `${firstNumber}${label}`
-														: label;
-												this.setFirstNumber(value);
-										}
+										this.setState({
+												...this.state,
+												lastNumber: value
+										});
 								}
 								break;
 						case "caculate":
-								isCalculating && this.setState({
+								firstNumber && this.setState({
 										...this.state,
 										operator: label
 								});
 								break;
 						case "equal":
-								if (isCalculating && firstNumber && lastNumber && operator) {
-										let result = this.calculate();
+								if (firstNumber && lastNumber && operator) {
+										const result = this.calculate();
 										this.setState({
 												...this.state,
 												result,
 												firstNumber: null,
 												operator: null,
-												lastNumber: null,
-												isCalculating: false
+												lastNumber: null
 										});
 								}
 								break;
@@ -79,17 +67,19 @@ class App extends Component {
 						result: 0,
 						firstNumber: null,
 						operator: null,
-						lastNumber: null,
-						isCalculating: false
+						lastNumber: null
 				});
 		}
 
-		setFirstNumber(value) {
+		setFirstNumber(label) {
+				const {firstNumber} = this.state;
+				let value = firstNumber
+						? `${firstNumber}${label}`
+						: label;
 				this.setState({
 						...this.state,
 						firstNumber: value,
-						result: parseInt(value),
-						isCalculating: true
+						result: value
 				});
 		}
 
